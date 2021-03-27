@@ -1,21 +1,26 @@
-#include<ESP8266Wifi.h>
+#include <DHT.h>  // Including library for dht
 
-String apiKey = ""; //Enter the Api key here
+#include <ESP8266WiFi.h>
+ 
+String apiKey = "M4EHKZWKFFXHNH9G";     //  Enter your Write API key from ThingSpeak
 
-String ssid = ""; //Enter your network name
-
-String pass = ""; //Enter your network password
-
+const char *ssid =  "Believer";     // replace with your wifi ssid and wpa2 key
+const char *pass =  "vigna7257";
 const char* server = "api.thingspeak.com";
 
-WiFiClient client;
+#define DHTPIN 0   //pin where the dht11 is connected
+ 
+DHT dht(DHTPIN, DHT11);
 
-void setup()
+WiFiClient client;
+ 
+void setup() 
 {
-   Serial.begin(115200); // sets the baud rate for the serial communication btw micro-controller and pc.
-   delay(10);
-	
-  Serial.println("Connecting to ");
+       Serial.begin(115200);
+       delay(10);
+       dht.begin();
+ 
+       Serial.println("Connecting to ");
        Serial.println(ssid);
  
  
@@ -30,35 +35,49 @@ void setup()
       Serial.println("WiFi connected");
  
 }
-
-
-void loop()
+ 
+void loop() 
 {
-	//Parameter 1 and 2 should be defined here.
+  
+      float h = dht.readHumidity();
+      float t = dht.readTemperature();
+      
+              if (isnan(h) || isnan(t)) 
+                 {
+                     Serial.println("Failed to read from DHT sensor!");
+                      return;
+                 }
 
-	if (client.connect(server,80)) // This function is used to connect to the server.
-	{
-		 String postStr = apiKey;
-                 postStr +="&field1=";
-                 postStr += String(paramater 1); // paramater 1 and 2 are the parameters we want to plot.
-                 postStr +="&field2=";
-                 postStr += String(parameter 2); // parameter 1 and 2 may vary according to the the sensor used.
-                 postStr += "\r\n\r\n";
-
-		//Writing the data read from the sensor to the server.
-
-		 client.print("POST /update HTTP/1.1\n");
-                 client.print("Host: api.thingspeak.com\n");
-                 client.print("Connection: close\n");
-                 client.print("X-THINGSPEAKAPIKEY: "+apiKey+"\n");
-                 client.print("Content-Type: application/x-www-form-urlencoded\n");
-                 client.print("Content-Length: ");
-                 client.print(postStr.length());
-                 client.print("\n\n");
-                 client.print(postStr);
-		
-			
-	}
-	client.stop();
-	delay(20000);
+                         if (client.connect(server,80))   //   "184.106.153.149" or api.thingspeak.com
+                      {  
+                            
+                             String postStr = apiKey;
+                             postStr +="&field1=";
+                             postStr += String(t);
+                             postStr +="&field2=";
+                             postStr += String(h);
+                             postStr += "\r\n\r\n";
+ 
+                             client.print("POST /update HTTP/1.1\n");
+                             client.print("Host: api.thingspeak.com\n");
+                             client.print("Connection: close\n");
+                             client.print("X-THINGSPEAKAPIKEY: "+apiKey+"\n");
+                             client.print("Content-Type: application/x-www-form-urlencoded\n");
+                             client.print("Content-Length: ");
+                             client.print(postStr.length());
+                             client.print("\n\n");
+                             client.print(postStr);
+ 
+                             Serial.print("Temperature: ");
+                             Serial.print(t);
+                             Serial.print(" degrees Celcius, Humidity: ");
+                             Serial.print(h);
+                             Serial.println("%. Send to Thingspeak.");
+                        }
+          client.stop();
+ 
+          Serial.println("Waiting...");
+  
+  // thingspeak needs minimum 15 sec delay between updates, i've set it to 30 seconds
+  delay(10000);
 }
