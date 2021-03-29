@@ -1,5 +1,5 @@
 #include <DHT.h>  // Including library for dht
-
+#include<MQUnifiedsensor.h>
 #include <ESP8266WiFi.h>
  
 String apiKey = "M4EHKZWKFFXHNH9G";     //  Enter your Write API key from ThingSpeak
@@ -7,7 +7,7 @@ String apiKey = "M4EHKZWKFFXHNH9G";     //  Enter your Write API key from ThingS
 const char *ssid =  "Believer";     // replace with your wifi ssid and wpa2 key
 const char *pass =  "vigna7257";
 const char* server = "api.thingspeak.com";
-
+float R0 = 15000;
 #define DHTPIN 0   //pin where the dht11 is connected
  
 DHT dht(DHTPIN, DHT11);
@@ -38,7 +38,10 @@ void setup()
  
 void loop() 
 {
-  
+     
+      float sensorval = 0;
+      float sensorvolt = 0;
+      float RS_gas;
       float h = dht.readHumidity();
       float t = dht.readTemperature();
       
@@ -48,14 +51,30 @@ void loop()
                       return;
                  }
 
+
+                 for(int i = 0; i < 100; i++)
+                 {
+                    sensorval += analogRead(A0);
+                 }
+
+                 sensorval /= 100; // avg
+                 sensorvolt = sensorval/1024*5.0;
+                 RS_gas = (5.0-sensorvolt)/sensorvolt;
+                float  ratio = RS_gas/R0;
+                float  x = 1000*ratio;
+                 float LPG_PPM = pow(x,-1.431);//LPG PPM
+               
+  
                          if (client.connect(server,80))   //   "184.106.153.149" or api.thingspeak.com
                       {  
                             
-                             String postStr = apiKey;
+                             String postStr = apiKey;                 
                              postStr +="&field1=";
                              postStr += String(t);
                              postStr +="&field2=";
                              postStr += String(h);
+                             postStr += "&field3=";
+                             postStr += String(LPG_PPM);
                              postStr += "\r\n\r\n";
  
                              client.print("POST /update HTTP/1.1\n");
@@ -72,8 +91,10 @@ void loop()
                              Serial.print(t);
                              Serial.print(" degrees Celcius, Humidity: ");
                              Serial.print(h);
+                             Serial.print(" Conc. of LPG in PPM: ");
+                             Serial.print(LPG_PPM);
                              Serial.println("%. Send to Thingspeak.");
-                        }
+                        } 
           client.stop();
  
           Serial.println("Waiting...");
