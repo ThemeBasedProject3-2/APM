@@ -112,13 +112,13 @@ void loop()
  
                              Serial.print("Temperature: ");
                              Serial.print(t);
-                             Serial.print(" degrees Celcius, Humidity: ");
+                             Serial.print(", degrees Celcius, Humidity: ");
                              Serial.print(h);
-                             Serial.print(" Conc. of H2 in PPM: ");
+                             Serial.print(", Conc. of H2 in PPM: ");
                              Serial.print(H2);
-                             Serial.print(" Conc. of LPG in PPM: ");
+                             Serial.print(", Conc. of LPG in PPM: ");
                              Serial.print(LPG);
-                             Serial.print(" Conc. of CH4 in PPM: ");
+                             Serial.print(", Conc. of CH4 in PPM: ");
                              Serial.print(CH4);
                              Serial.println("%. Send to Thingspeak.");
                         } 
