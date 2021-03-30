@@ -76,6 +76,7 @@ void loop()
               if (isnan(h) || isnan(t)) 
                  {
                      Serial.println("Failed to read from DHT sensor!");
+                     delay(2500);
                       return;
                  }
 
