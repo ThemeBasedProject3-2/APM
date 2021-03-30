@@ -62,14 +62,14 @@ void loop()
       float t = dht.readTemperature();
       MQ6.update(); // Update data, the arduino will be read the voltage on the analog pin
 
-  MQ6.setA(605.18); MQ6.setB(-3.937); // Configurate the ecuation values to get CO concentration
-  float H2 = MQ135.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
+  MQ6.setA(88158); MQ6.setB(-3.597); // Configurate the ecuation values to get CO concentration
+  float H2 = MQ6.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
 
-  MQ6.setA(77.255); MQ6.setB(-3.18); // Configurate the ecuation values to get Alcohol concentration
-  float LPG = MQ135.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
+  MQ6.setA(1009.2); MQ6.setB(-2.35); // Configurate the ecuation values to get Alcohol concentration
+  float LPG = MQ6.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
 
-  MQ6.setA(110.47); MQ6.setB(-2.862); // Configurate the ecuation values to get CO2 concentration
-  float CH4 = MQ135.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
+  MQ6.setA(2127.2); MQ6.setB(-2.526); // Configurate the ecuation values to get CO2 concentration
+  float CH4 = MQ6.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
 
   
       
