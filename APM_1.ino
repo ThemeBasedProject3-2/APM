@@ -38,7 +38,7 @@ void setup()
            calcR0 += MQ6.calibrate(RatioMQ135CleanAir);
            Serial.print(".");
        }
-       MQ135.setR0(calcR0/10);
+       MQ6.setR0(calcR0/10);
        Serial.println("  done!.");
        Serial.println("Connecting to ");
        Serial.println(ssid);
