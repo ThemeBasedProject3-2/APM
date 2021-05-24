@@ -146,13 +146,13 @@ void loop()
   MQ7.setA(99.042); MQ7.setB(-1.518);  //Configure the ecuation values to get CO concentration
   float CO = MQ7.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
  
-  MQ135.setA(102.2); MQ.setB(-2.473);
+  MQ135.setA(102.2); MQ135.setB(-2.473);
   float  NH3 = MQ135.readSensor();
  
-   MQ135.setA(44.947); MQ44.947.setB(-3.445);
+   MQ135.setA(44.947); MQ135.947.setB(-3.445);
    float  Toulene = MQ135.readSensor();
    
-   MQ135.setA(110.47); MQ44.947.setB(-2.862);
+   MQ135.setA(110.47); MQ135.947.setB(-2.862);
    float  CO2 = MQ135.readSensor();
    
       
