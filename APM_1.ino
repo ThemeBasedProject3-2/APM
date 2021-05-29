@@ -13,6 +13,17 @@
 #define RatioMQ6CleanAir 10 //RS / R0 = 10 ppm
 #define RatioMQ7CleanAir 27.5
 
+// Defining the threshold values of the gases
+
+#define H2T 50
+#define LPGT 2000
+#define COT 50
+#define NH3T 25
+#define CO2T 5000
+#define TOULENE_T 100
+//=================================================================================//
+
+
 MQUnifiedsensor MQ6(board, Voltage_Resolution, ADC_Bit_Resolution, pin, type1);
 MQUnifiedsensor MQ7(board, Voltage_Resolution, ADC_Bit_Resolution,pin,type2);
 MQUnifiedsensor MQ135(board, Voltage_Resolution, ADC_Bit_Resolution, pin, type3);
@@ -78,7 +89,7 @@ void calibrateMQ135()
 
 void initMQ6()
 {
-      `MQ6.setRegressionMethod(1);
+       MQ6.setRegressionMethod(1);
        MQ6.init();
        MQ6.setRL(10);
        calibrateMQ6();
@@ -87,7 +98,7 @@ void initMQ6()
 
 void initMQ7()
 {
-      `MQ7.setRegressionMethod(1);
+       MQ7.setRegressionMethod(1);
        MQ7.init();
        MQ7.setRL(10);
        calibrateMQ7();
@@ -187,6 +198,18 @@ void loop()
                              postStr += String(Toulene);
                              postStr += "&field8=";
                              postStr += String(CO2);
+                             postStr += "&field9=";
+                             postStr += String(H2T);
+                             postStr += "&field10=";
+                             postStr += String(LPGT);
+                             postStr += "&field11=";
+                             postStr += String(COT);
+                             postStr += "&field12=";
+                             postStr += String(NH3T);
+                             postStr += "&field13=";
+                             postStr += String(TOULENE_T);
+                             postStr += "&field14=";
+                             postStr += String(CO2T);
                              postStr += "\r\n\r\n";
  
                              client.print("POST /update HTTP/1.1\n");
