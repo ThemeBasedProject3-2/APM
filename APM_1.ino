@@ -160,10 +160,10 @@ void loop()
   MQ135.setA(102.2); MQ135.setB(-2.473);
   float  NH3 = MQ135.readSensor();
  
-   MQ135.setA(44.947); MQ135.947.setB(-3.445);
+   MQ135.setA(44.947); MQ135.setB(-3.445);
    float  Toulene = MQ135.readSensor();
    
-   MQ135.setA(110.47); MQ135.947.setB(-2.862);
+   MQ135.setA(110.47); MQ135.setB(-2.862);
    float  CO2 = MQ135.readSensor();
    
       
