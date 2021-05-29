@@ -24,6 +24,7 @@
 //=================================================================================//
 
 
+
 MQUnifiedsensor MQ6(board, Voltage_Resolution, ADC_Bit_Resolution, pin, type1);
 MQUnifiedsensor MQ7(board, Voltage_Resolution, ADC_Bit_Resolution,pin,type2);
 MQUnifiedsensor MQ135(board, Voltage_Resolution, ADC_Bit_Resolution, pin, type3);
@@ -115,6 +116,13 @@ void initMQ135()
       
 }
 
+void MakeLow()
+{
+       digitalWritw(D1, LOW);
+       digitalWritw(D2, LOW);
+       digitalWritw(D3, LOW);
+ 
+}
 
 void setup() 
 {
@@ -124,7 +132,13 @@ void setup()
        initMQ6();
        initMQ7();
        initMQ135();
- 
+       
+       pinMode(D1, OUTPUT);   
+       pinMode(D2, OUTPUT);
+       pinMode(D3, OUTPUT);  
+       
+       MakeLow();
+  
        Serial.println("Connecting to ");
        Serial.println(ssid);
  
@@ -146,17 +160,23 @@ void loop()
       float h = dht.readHumidity();
       float t = dht.readTemperature();
       MQ6.update(); // Update data, the arduino will be read the voltage on the analog pin
-
+      MQ7.update();
+      MQ135.update();
+      MakeLow();
+  digitalWrite(D1, HIGH);
   MQ6.setA(88158); MQ6.setB(-3.597); // Configurate the ecuation values to get H2 concentration
   float H2 = MQ6.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
 
 
   MQ6.setA(1009.2); MQ6.setB(-2.35); // Configurate the ecuation values to get LPG concentration
   float LPG = MQ6.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
-
+  
+  digitalWrite(D2, HIGH); 
   MQ7.setA(99.042); MQ7.setB(-1.518);  //Configure the ecuation values to get CO concentration
   float CO = MQ7.readSensor(); // Sensor will read PPM concentration using the model and a and b values setted before or in the setup
+  
  
+ digitalWrite(D3, HIGH);
   MQ135.setA(102.2); MQ135.setB(-2.473);
   float  NH3 = MQ135.readSensor();
  
