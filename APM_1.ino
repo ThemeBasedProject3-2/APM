@@ -118,9 +118,9 @@ void initMQ135()
 
 void MakeLow()
 {
-       digitalWritw(D1, LOW);
-       digitalWritw(D2, LOW);
-       digitalWritw(D3, LOW);
+       digitalWrite(D1, LOW);
+       digitalWrite(D2, LOW);
+       digitalWrite(D3, LOW);
  
 }
 
