@@ -35,7 +35,7 @@ String apiKey = "M4EHKZWKFFXHNH9G";     //  Enter your Write API key from ThingS
 const char *ssid =  "Believer";     // replace with your wifi ssid and wpa2 key
 const char *pass =  "vigna7257";
 const char* server = "api.thingspeak.com";
-#define DHTPIN 0   //pin where the dht11 is connected
+#define DHTPIN 2  //pin where the dht11 is connected
  
 DHT dht(DHTPIN, DHT11);
 
