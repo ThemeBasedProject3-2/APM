@@ -272,7 +272,7 @@ void loop()
                              Serial.print(NH3);
                              Serial.print(", Conc. of TOULENE in PPM ");
                              Serial.print(Toulene);
-                             Serial.print(", Conc. of TOULENE in PPM ");
+                             Serial.print(", Conc. of CO2 in PPM ");
                              Serial.print(CO2);
                              Serial.println(" Send to Thingspeak.");
                         } 
