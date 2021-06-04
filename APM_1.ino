@@ -31,7 +31,7 @@ MQUnifiedsensor MQ135(board, Voltage_Resolution, ADC_Bit_Resolution, pin, type3)
 
  
 String apiKey = "M4EHKZWKFFXHNH9G";     //  Enter your Write API key from ThingSpeak
-
+String ApiKey = "FA3B1CES10VIG330"; 
 const char *ssid =  "Believer";     // replace with your wifi ssid and wpa2 key
 const char *pass =  "vigna7257";
 const char* server = "api.thingspeak.com";
@@ -200,6 +200,7 @@ void loop()
   
                          if (client.connect(server,80))   //   "184.106.153.149" or api.thingspeak.com
                       {  
+                          //Channel 1
                             
                              String postStr = apiKey;                 
                              postStr +="&field1=";
@@ -209,33 +210,47 @@ void loop()
                              postStr += "&field3=";
                              postStr += String(H2);
                              postStr += "&field4=";
-                             postStr += String(LPG);
-                             postStr += "&field5=";
-                             postStr += String(CO);
-                             postStr += "&field6=";
-                             postStr += String(NH3);
-                             postStr += "&field7=";
-                             postStr += String(Toulene);
-                             postStr += "&field8=";
-                             postStr += String(CO2);
-                             postStr += "&field9=";
                              postStr += String(H2T);
-                             postStr += "&field10=";
+                             postStr += "&field5=";
+                             postStr += String(LPG);
+                             postStr += "&field6=";
                              postStr += String(LPGT);
-                             postStr += "&field11=";
+                             postStr += "&field7=";
+                             postStr += String(CO);
+                             postStr += "&field8=";
                              postStr += String(COT);
-                             postStr += "&field12=";
-                             postStr += String(NH3T);
-                             postStr += "&field13=";
-                             postStr += String(TOULENE_T);
-                             postStr += "&field14=";
-                             postStr += String(CO2T);
                              postStr += "\r\n\r\n";
  
                              client.print("POST /update HTTP/1.1\n");
                              client.print("Host: api.thingspeak.com\n");
                              client.print("Connection: close\n");
                              client.print("X-THINGSPEAKAPIKEY: "+apiKey+"\n");
+                             client.print("Content-Type: application/x-www-form-urlencoded\n");
+                             client.print("Content-Length: ");
+                             client.print(postStr.length());
+                             client.print("\n\n");
+                             client.print(postStr);
+                          
+                          //Channel 2
+                          
+                             postStr = ApiKey;
+                             postStr += "&field1="
+                             postStr += String(NH3);
+                             postStr += "&field2="
+                             postStr += String(NH3T);
+                             postStr += "&field3="
+                             postStr += String(Toulene);
+                             postStr += "&field4="
+                             postStr += String(TOULENE_T);
+                             postStr += "&field5="
+                             postStr += String(CO2);
+                             postStr += "&field6="
+                             postStr += String(CO2T);
+                          
+                            client.print("POST /update HTTP/1.1\n");
+                             client.print("Host: api.thingspeak.com\n");
+                             client.print("Connection: close\n");
+                             client.print("X-THINGSPEAKAPIKEY: "+ApiKey+"\n");
                              client.print("Content-Type: application/x-www-form-urlencoded\n");
                              client.print("Content-Length: ");
                              client.print(postStr.length());
