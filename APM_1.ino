@@ -234,15 +234,15 @@ void loop()
                           //Channel 2
                           
                              postStr = ApiKey;
-                             postStr += "&field1="
+                             postStr += "&field1=";
                              postStr += String(NH3);
-                             postStr += "&field2="
+                             postStr += "&field2=";
                              postStr += String(NH3T);
-                             postStr += "&field3="
+                             postStr += "&field3=";
                              postStr += String(Toulene);
-                             postStr += "&field4="
+                             postStr += "&field4=";
                              postStr += String(TOULENE_T);
-                             postStr += "&field5="
+                             postStr += "&field5=";
                              postStr += String(CO2);
                              postStr += "&field6=";
                              postStr += String(CO2T);
