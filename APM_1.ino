@@ -32,8 +32,8 @@ MQUnifiedsensor MQ135(board, Voltage_Resolution, ADC_Bit_Resolution, pin, type3)
  
 String apiKey = "M4EHKZWKFFXHNH9G";     //  Enter your Write API key from ThingSpeak
 String ApiKey = "FA3B1CES10VIG330"; 
-const char *ssid =  "Believer";     // replace with your wifi ssid and wpa2 key
-const char *pass =  "vigna7257";
+const char *ssid =  "Vprasad";     // replace with your wifi ssid and wpa2 key
+const char *pass =  "8885995407";
 const char* server = "api.thingspeak.com";
 #define DHTPIN 2  //pin where the dht11 is connected
  
@@ -247,7 +247,9 @@ void loop()
                              client.print(postStr.length());
                              client.print("\n\n");
                              client.print(postStr);
-                          
+                             
+                            delay(30000);
+                            
                           //Channel 2
                              postStr = "";
                              postStr = ApiKey;
@@ -298,5 +300,5 @@ void loop()
           Serial.println("Waiting...");
   
   // thingspeak needs minimum 15 sec delay between updates, i've set it to 30 seconds
-  delay(20000);
+
 }
