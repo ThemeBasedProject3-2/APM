@@ -52,7 +52,14 @@ void calibrateMQ6()
            Serial.print(".");
        }
        MQ6.setR0(calcR0/10);
-       Serial.println("  done!.");
+ 
+ Serial.println("  done!.");
+ if(isinf(calcR0)) {Serial.println("Warning: Conection issue founded, R0 is infite (Open circuit detected) please check your wiring and supply"); while(1);}
+ if(calcR0 == 0){Serial.println("Warning: Conection issue founded, R0 is zero (Analog pin with short circuit to ground) please check your wiring and supply"); while(1);}
+ 
+ 
+ 
+  MQ6.serialDebug(true);
  
  }
  
@@ -69,6 +76,10 @@ void calibrateMQ7()
        MQ7.setR0(calcR0/10);   
       Serial.println("  done!.");
  
+    
+     if(isinf(calcR0)) {Serial.println("Warning: Conection issue founded, R0 is infite (Open circuit detected) please check your wiring and supply"); while(1);}
+     if(calcR0 == 0){Serial.println("Warning: Conection issue founded, R0 is zero (Analog pin with short circuit to ground) please check your wiring and supply"); while(1);}
+ 
  
 }
 
@@ -84,6 +95,12 @@ void calibrateMQ135()
        }
        MQ135.setR0(calcR0/10);   
       Serial.println("  done!.");
+ 
+ 
+     if(isinf(calcR0)) {Serial.println("Warning: Conection issue founded, R0 is infite (Open circuit detected) please check your wiring and supply"); while(1);}
+     if(calcR0 == 0){Serial.println("Warning: Conection issue founded, R0 is zero (Analog pin with short circuit to ground) please check your wiring and supply"); while(1);}
+ 
+ 
  
  
 }
@@ -232,7 +249,7 @@ void loop()
                              client.print(postStr);
                           
                           //Channel 2
-                          
+                             postStr = "";
                              postStr = ApiKey;
                              postStr += "&field1=";
                              postStr += String(NH3);
@@ -243,7 +260,7 @@ void loop()
                              postStr += "&field4=";
                              postStr += String(TOULENE_T);
                              postStr += "&field5=";
-                             postStr += String(CO2);
+                             postStr += String(CO2 + 400);
                              postStr += "&field6=";
                              postStr += String(CO2T);
                              postStr += "\r\n\r\n";
@@ -273,7 +290,7 @@ void loop()
                              Serial.print(", Conc. of TOULENE in PPM ");
                              Serial.print(Toulene);
                              Serial.print(", Conc. of CO2 in PPM ");
-                             Serial.print(CO2);
+                             Serial.print(CO2 + 400);
                              Serial.println(" Send to Thingspeak.");
                         } 
           client.stop();
