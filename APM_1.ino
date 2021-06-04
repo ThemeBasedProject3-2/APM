@@ -251,7 +251,7 @@ void loop()
                           //Channel 2
                              postStr = "";
                              postStr = ApiKey;
-                             postStr += "&field1=";
+                             postStr += "=&field1=";
                              postStr += String(NH3);
                              postStr += "&field2=";
                              postStr += String(NH3T);
