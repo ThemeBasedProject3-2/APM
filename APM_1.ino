@@ -244,10 +244,11 @@ void loop()
                              postStr += String(TOULENE_T);
                              postStr += "&field5="
                              postStr += String(CO2);
-                             postStr += "&field6="
+                             postStr += "&field6=";
                              postStr += String(CO2T);
+                             postStr += "\r\n\r\n";
                           
-                            client.print("POST /update HTTP/1.1\n");
+                             client.print("POST /update HTTP/1.1\n");
                              client.print("Host: api.thingspeak.com\n");
                              client.print("Connection: close\n");
                              client.print("X-THINGSPEAKAPIKEY: "+ApiKey+"\n");
