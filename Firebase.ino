@@ -3,7 +3,7 @@
 #include<DHT.h>
 #include<MQUnifiedsensor.h>
 
-#define DHTPIN 0                     
+#define DHTPIN 2                   
 #define FIREBASE_HOST "led123-af4d8-default-rtdb.firebaseio.com" //Your Firebase Project URL goes here without "http:" , "\" and "/"
 #define FIREBASE_AUTH "ilyWvNAvn3XiD3FdYGwXaIONMJKuCLaqtLrZOwX3"      //Your Firebase Database Secret goes here           
 
@@ -234,6 +234,9 @@ if (Firebase.setFloat(firebaseData, "/sample", val)) {    // On successful Write
 
      }
  
+else {        
+    Serial.println(firebaseData.errorReason());
+  }
 
 
 if (Firebase.setFloat(firebaseData, "/temp", t)) {    // On successful Write operation, function returns 1  
