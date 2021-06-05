@@ -247,12 +247,14 @@ void loop()
                              client.print(postStr.length());
                              client.print("\n\n");
                              client.print(postStr);
+                         }
                              
                             delay(30000);
                             
-                          //Channel 2
-                             postStr = "";
-                             postStr = ApiKey;
+                         if (client.connect(server,80))                        
+                         {    //Channel 2
+                           
+                             String postStr = ApiKey;
                              postStr += "=&field1=";
                              postStr += String(NH3);
                              postStr += "&field2=";
