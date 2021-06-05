@@ -8,8 +8,21 @@
 #define FIREBASE_AUTH "ilyWvNAvn3XiD3FdYGwXaIONMJKuCLaqtLrZOwX3"      //Your Firebase Database Secret goes here           
 
 #define WIFI_SSID "Vprasad"                                               //WiFi SSID to which you want NodeMCU to connect
-#define WIFI_PASSWORD "8885995407"                                      //Password of your wifi network 
- 
+#define WIFI_PASSWORD "8885995407"   
+
+//Password of your wifi network 
+
+#define board "ESP8266"
+#define Voltage_Resolution 5
+#define pin A0 //Analog input 0 of your arduino
+#define type1 "MQ-6" 
+#define type2 "MQ-7"
+#define type3 "MQ-135"
+#define ADC_Bit_Resolution 10 // For arduino UNO/MEGA/NANO
+#define RatioMQ135CleanAir 3.6 //RS / R0 = 3.6 ppm
+#define RatioMQ6CleanAir 10 //RS / R0 = 10 ppm
+#define RatioMQ7CleanAir 27.5
+
 
  DHT dht(DHTPIN, DHT11);
 
