@@ -223,20 +223,7 @@ void loop() {
   
  
  
-if (Firebase.setFloat(firebaseData, "/sample", val)) {    // On successful Write operation, function returns 1  
-               Serial.println("Value Uploaded Successfully");
-               Serial.print("val = ");
-               Serial.println(val);
-               Serial.println("\n");
-               
-            
-               delay(1000);
 
-     }
- 
-else {        
-    Serial.println(firebaseData.errorReason());
-  }
 
 
 if (Firebase.setString(firebaseData, "/temp", String(val) + "," + String(t))) {    // On successful Write operation, function returns 1  
@@ -256,7 +243,7 @@ else {
 
 
 
-if (Firebase.setFloat(firebaseData, "/humidity", String(val) + "," + String(h))) {    // On successful Write operation, function returns 1  
+if (Firebase.setString(firebaseData, "/humidity", String(val) + "," + String(h))) {    // On successful Write operation, function returns 1  
                Serial.println("Value Uploaded Successfully");
                Serial.print("h = ");
                Serial.println(h);
@@ -271,7 +258,7 @@ if (Firebase.setFloat(firebaseData, "/humidity", String(val) + "," + String(h)))
     Serial.println(firebaseData.errorReason());
   }
   
-  if (Firebase.setFloat(firebaseData, "/H2", String(val) + "," + String(H2))) {    // On successful Write operation, function returns 1  
+  if (Firebase.setString(firebaseData, "/H2", String(val) + "," + String(H2))) {    // On successful Write operation, function returns 1  
                Serial.println("Value Uploaded Successfully");
                Serial.print("H2 = ");
                Serial.println(H2);
@@ -286,10 +273,10 @@ else {
     Serial.println(firebaseData.errorReason());
   }
   
-  if (Firebase.setFloat(firebaseData, "/LPG", String(val) + "," + String(LPG))) {    // On successful Write operation, function returns 1  
+  if (Firebase.setString(firebaseData, "/LPG", String(val) + "," + String(LPG))) {    // On successful Write operation, function returns 1  
                Serial.println("Value Uploaded Successfully");
-               Serial.print("t = ");
-               Serial.println(t);
+               Serial.print("LPG = ");
+               Serial.println(LPG);
                Serial.println("\n");
                
             
@@ -301,21 +288,7 @@ else {
     Serial.println(firebaseData.errorReason());
   }
   
-  if (Firebase.setFloat(firebaseData, "/CO", CO)) {    // On successful Write operation, function returns 1  
-               Serial.println("Value Uploaded Successfully");
-               Serial.print("CO = ");
-               Serial.println(CO);
-               Serial.println("\n");
-               
-            
-               delay(1000);
-
-     }
-
-else {        
-    Serial.println(firebaseData.errorReason());
-  }
-
+  
  val += 1;
  
 }
