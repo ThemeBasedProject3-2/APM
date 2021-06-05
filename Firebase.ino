@@ -239,7 +239,7 @@ else {
   }
 
 
-if (Firebase.setFloat(firebaseData, "/temp", t)) {    // On successful Write operation, function returns 1  
+if (Firebase.setString(firebaseData, "/temp", String(val) + "," + String(t))) {    // On successful Write operation, function returns 1  
                Serial.println("Value Uploaded Successfully");
                Serial.print("t = ");
                Serial.println(t);
@@ -256,7 +256,7 @@ else {
 
 
 
-if (Firebase.setFloat(firebaseData, "/humidity", h)) {    // On successful Write operation, function returns 1  
+if (Firebase.setFloat(firebaseData, "/humidity", String(val) + "," + String(h))) {    // On successful Write operation, function returns 1  
                Serial.println("Value Uploaded Successfully");
                Serial.print("h = ");
                Serial.println(h);
@@ -271,7 +271,7 @@ if (Firebase.setFloat(firebaseData, "/humidity", h)) {    // On successful Write
     Serial.println(firebaseData.errorReason());
   }
   
-  if (Firebase.setFloat(firebaseData, "/H2", H2)) {    // On successful Write operation, function returns 1  
+  if (Firebase.setFloat(firebaseData, "/H2", String(val) + "," + String(H2))) {    // On successful Write operation, function returns 1  
                Serial.println("Value Uploaded Successfully");
                Serial.print("H2 = ");
                Serial.println(H2);
@@ -286,7 +286,7 @@ else {
     Serial.println(firebaseData.errorReason());
   }
   
-  if (Firebase.setFloat(firebaseData, "/LPG", LPG)) {    // On successful Write operation, function returns 1  
+  if (Firebase.setFloat(firebaseData, "/LPG", String(val) + "," + String(LPG))) {    // On successful Write operation, function returns 1  
                Serial.println("Value Uploaded Successfully");
                Serial.print("t = ");
                Serial.println(t);
