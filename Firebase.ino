@@ -33,6 +33,8 @@ MQUnifiedsensor MQ6(board, Voltage_Resolution, ADC_Bit_Resolution, pin, type1);
 MQUnifiedsensor MQ7(board, Voltage_Resolution, ADC_Bit_Resolution,pin,type2);
 MQUnifiedsensor MQ135(board, Voltage_Resolution, ADC_Bit_Resolution, pin, type3);
 
+int val = 0;
+
 void calibrateMQ6()
 {
        Serial.print("Calibrating MQ6 please  wait.");
@@ -219,6 +221,20 @@ void loop() {
           return;
      }    
   
+ 
+ 
+if (Firebase.setFloat(firebaseData, "/sample", val)) {    // On successful Write operation, function returns 1  
+               Serial.println("Value Uploaded Successfully");
+               Serial.print("val = ");
+               Serial.println(val);
+               Serial.println("\n");
+               
+            
+               delay(1000);
+
+     }
+ 
+
 
 if (Firebase.setFloat(firebaseData, "/temp", t)) {    // On successful Write operation, function returns 1  
                Serial.println("Value Uploaded Successfully");
@@ -297,4 +313,6 @@ else {
     Serial.println(firebaseData.errorReason());
   }
 
+ val += 1;
+ 
 }
