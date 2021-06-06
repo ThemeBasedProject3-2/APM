@@ -288,6 +288,67 @@ else {
     Serial.println(firebaseData.errorReason());
   }
   
+ if (Firebase.setString(firebaseData, "/CO", String(val) + "," + String(CO))) {    // On successful Write operation, function returns 1  
+               Serial.println("Value Uploaded Successfully");
+               Serial.print("CO = ");
+               Serial.println(CO);
+               Serial.println("\n");
+               
+            
+               delay(1000);
+
+     }
+
+else {        
+    Serial.println(firebaseData.errorReason());
+  }
+ 
+ if (Firebase.setString(firebaseData, "/NH3", String(val) + "," + String(NH3))) {    // On successful Write operation, function returns 1  
+               Serial.println("Value Uploaded Successfully");
+               Serial.print("NH3 = ");
+               Serial.println(NH3);
+               Serial.println("\n");
+               
+            
+               delay(1000);
+
+     }
+
+else {        
+    Serial.println(firebaseData.errorReason());
+  }
+ 
+ if (Firebase.setString(firebaseData, "/TOULENE", String(val) + "," + String(Toulene))) {    // On successful Write operation, function returns 1  
+               Serial.println("Value Uploaded Successfully");
+               Serial.print("Toulene = ");
+               Serial.println(Toulene);
+               Serial.println("\n");
+               
+            
+               delay(1000);
+
+     }
+
+ 
+else {        
+    Serial.println(firebaseData.errorReason());
+  }
+ 
+ 
+ if (Firebase.setString(firebaseData, "/CO2", String(val) + "," + String(CO2))) {    // On successful Write operation, function returns 1  
+               Serial.println("Value Uploaded Successfully");
+               Serial.print("CO2 = ");
+               Serial.println(CO2);
+               Serial.println("\n");
+               
+            
+               delay(1000);
+
+     }
+
+else {        
+    Serial.println(firebaseData.errorReason());
+  }
   
  val += 1;
  
